@@ -138,6 +138,7 @@ ENDPOINTS = {
     'saved_searches/show/:PARAM':                           ('GET',    'api'), # ID
 
     'search/tweets':                                        ('GET',    'api'),
+    'tweets/search/:PARAM/:PARAM':                          ('POST',   'api'), # ENV, LABEL
 
     'statuses/destroy/:PARAM':                              ('POST',   'api'), # ID
     'statuses/home_timeline':                               ('GET',    'api'),

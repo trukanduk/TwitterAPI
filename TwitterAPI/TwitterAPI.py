@@ -184,7 +184,7 @@ class TwitterResponse(object):
         :raises: TwitterConnectionError, TwitterRequestError
         """
         if self.response.status_code != 200:
-            raise TwitterRequestError(self.response.status_code)
+            raise TwitterRequestError(self.response.status_code, self.response.text)
 
         if self.stream:
             return iter(_StreamingIterable(self.response))
@@ -238,6 +238,8 @@ class _RestIterable(object):
             self.results = resp['users']
         elif 'ids' in resp:
             self.results = resp['ids']
+        elif 'results' in resp:
+            self.results = resp['results']
         elif 'data' in resp and not isinstance(resp['data'], dict):
             self.results = resp['data']
         elif hasattr(resp, '__iter__') and not isinstance(resp, dict):
